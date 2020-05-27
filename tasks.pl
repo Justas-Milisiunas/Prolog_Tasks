@@ -4,17 +4,17 @@ search(Item, [Item|_]).
 search(Item, [_|Tail]) :-
     search(Item, Tail).
 
-unique([], []).
+unique([], _, []).
 
-unique([Item|Tail], Output) :-
-    search(Item, Tail),
-    unique(Tail, Output).
+unique([Item|Tail], LastItem, Output) :-
+    Item == LastItem,
+    unique(Tail, Item, Output).
 
-unique([Item|Tail], [Item|Output]) :-
-    unique(Tail, Output).
+unique([Item|Tail], _, [Item|Output]) :-
+    unique(Tail, Item, Output).
 
 task5_solve(List, Output) :-
-    unique(List, Output),
+    unique(List, _, Output),
     !.
 
 % Task 6 solver
