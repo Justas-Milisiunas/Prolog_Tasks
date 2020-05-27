@@ -1,9 +1,4 @@
 % Task 5 solver
-search(Item, [Item|_]).
-
-search(Item, [_|Tail]) :-
-    search(Item, Tail).
-
 unique([], _, []).
 
 unique([Item|Tail], LastItem, Output) :-
